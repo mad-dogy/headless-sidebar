@@ -1,0 +1,26 @@
+{
+  "name": "headless-sidebar",
+  "version": "1.0.0",
+  "main": "build/index.js",
+  "module": "build/index.es.js",
+  "type": "module",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "prebuild": "rm -rf ./build",
+    "build": "rm -rf ./build && rollup --config"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@types/react": "^18.3.12",
+    "react": "^18.3.1",
+    "rollup": "^4.24.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "^5.6.3"
+  },
+  "peerDependencies": {
+    "react": "^18.*"
+  }
+}
