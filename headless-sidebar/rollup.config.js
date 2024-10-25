@@ -2,6 +2,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import external from 'rollup-plugin-peer-deps-external';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
+import css from 'rollup-plugin-import-css';
 
 import packageJson from './package.json' assert { type: 'json' };
 
@@ -31,6 +32,7 @@ export default {
       clean: true,
       rollupCommonJSResolveHack: true,
       exclude: ['node_modules']
-    })
+    }),
+    css()
   ]
 };

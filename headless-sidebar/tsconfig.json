@@ -17,8 +17,7 @@
     "noUnusedParameters": true,
     "esModuleInterop": true,
     "downlevelIteration": true,
-    "jsx": "react",
-
+    "jsx": "react"
   },
   "include": ["src"],
   "exclude": ["node_modules", "build"]
