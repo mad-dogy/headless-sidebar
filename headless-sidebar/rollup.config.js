@@ -1,8 +1,9 @@
-import resolve from '@rollup/plugin-node-resolve'
-import external from 'rollup-plugin-peer-deps-external'
-import commonjs from '@rollup/plugin-commonjs'
-import typescript from 'rollup-plugin-typescript2'
-import packageJson from './package.json' assert { type: "json" };
+import resolve from '@rollup/plugin-node-resolve';
+import external from 'rollup-plugin-peer-deps-external';
+import commonjs from '@rollup/plugin-commonjs';
+import typescript from 'rollup-plugin-typescript2';
+
+import packageJson from './package.json' assert { type: 'json' };
 
 export default {
   input: 'src/index.ts',
@@ -24,12 +25,12 @@ export default {
     resolve(),
     external(),
     commonjs({
-      include: ['node_modules/**'],
+      include: ['node_modules/**']
     }),
     typescript({
       clean: true,
       rollupCommonJSResolveHack: true,
-      exclude: ['node_modules'],
-    }),
+      exclude: ['node_modules']
+    })
   ]
-}
+};

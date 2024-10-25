@@ -1,11 +1,9 @@
-import { Sidebar } from 'headless-sidebar';
+import { Sidebar } from '../../headless-sidebar/src/index';
 
 import './App.css';
 
 function App() {
-  return (
-    <Sidebar/>
-  )
+  return <Sidebar />;
 }
 
 export default App;

@@ -1,7 +1,5 @@
 import React from 'react';
 
-export const Sidebar  = () => {
-  return (
-    <div>bbbbbb</div>
-  )
-}
+export const Sidebar = () => {
+  return <div>bbbbbb</div>;
+};
