@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 
-import { classNames } from '../../model/lib/helpers/classNames/classNames';
 import { Title } from '../Title/Title';
 import { Menu } from '../Menu/Menu';
 import { MenuSeparator } from '../MenuSeparator/MenuSeparator';
@@ -30,9 +29,9 @@ export const Entry = (props: Props) => {
 
   return (
     <SidebarContext.Provider value={memoizedContextValue}>
-      <Sidebar className={classNames(styles['headless-sidebar-entry'], {}, [className])}>
-        {children}
-      </Sidebar>
+      <div className={styles['headless-sidebar-entry']}>
+        <Sidebar className={className}>{children}</Sidebar>
+      </div>
     </SidebarContext.Provider>
   );
 };

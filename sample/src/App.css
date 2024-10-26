@@ -1,7 +1,11 @@
 #root {
-  padding: 2rem;
+  width: 100%;
+  height: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .sidebar {
   background: #e6e6e6;
+  max-width: 600px;
 }
