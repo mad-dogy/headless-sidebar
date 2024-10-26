@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 
 import { classNames } from '../../model/lib/helpers/classNames/classNames';
 
-import styles from './Sidebar.css';
+import styles from './Sidebar.module.css';
 
 type Props = {
   children?: ReactNode;

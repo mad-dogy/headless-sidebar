@@ -2,7 +2,7 @@ import React from 'react';
 
 import { classNames } from '../../model/lib/helpers/classNames/classNames';
 
-import styles from './MenuSeparator.css';
+import styles from './MenuSeparator.module.css';
 
 export type MenuSeparatorProps = {
   className?: string;
