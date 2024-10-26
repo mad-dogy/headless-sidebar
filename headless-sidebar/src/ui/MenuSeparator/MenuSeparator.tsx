@@ -1,9 +1,8 @@
 import React from 'react';
 
 import { classNames } from '../../model/lib/helpers/classNames/classNames';
-import { useSidebar } from '../../model/hooks/useSidebarContext';
 
-import './MenuSeparator.css';
+import styles from './MenuSeparator.css';
 
 export type MenuSeparatorProps = {
   className?: string;
@@ -12,7 +11,7 @@ export type MenuSeparatorProps = {
 export const MenuSeparator = (props: MenuSeparatorProps) => {
   const { className } = props;
 
-  const { isOpen } = useSidebar();
+  // const {  } = useSidebar();
 
-  return <div className={classNames('separator', {}, [className])} />;
+  return <div className={classNames(styles.separator, {}, [className])} />;
 };

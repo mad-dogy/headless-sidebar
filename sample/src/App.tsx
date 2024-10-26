@@ -1,4 +1,4 @@
-import { Sidebar } from '../../headless-sidebar/src';
+import { Sidebar } from 'headless-sidebar';
 
 import './App.css';
 

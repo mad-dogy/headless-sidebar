@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "rm -rf ./node_modules && yarn install && vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "preview": "vite preview"
+    "preview": "tsc -b && vite build && vite preview"
   },
   "dependencies": {
     "headless-sidebar": "../headless-sidebar",
