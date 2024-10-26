@@ -6,6 +6,9 @@
 }
 
 .sidebar {
-  background: #e6e6e6;
-  max-width: 600px;
+  background-color: #e6e6e6;
+}
+
+.aaa {
+  padding-left: 40px;
 }

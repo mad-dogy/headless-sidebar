@@ -7,7 +7,8 @@ import { MenuItem } from '../MenuItem/MenuItem';
 import { SidebarContext } from '../../model/constants/sidebarContext';
 import { Sidebar } from '../Sidebar/Sidebar';
 import { Custom } from '../Custom/Custom';
-import { Colapsable } from '../Colapsable/Colapsable';
+import { Collapsible } from '../Collapsible/Collapsible';
+import { ToggleButton } from '../ToggleButton/ToggleButton';
 
 import styles from './Entry.module.css';
 
@@ -46,4 +47,6 @@ Entry.MenuSeparator = MenuSeparator;
 
 Entry.Custom = Custom;
 
-Entry.Colapsable = Colapsable;
+Entry.Collapsible = Collapsible;
+
+Entry.ToggleButton = ToggleButton;

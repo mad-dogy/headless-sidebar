@@ -4,7 +4,7 @@ import { classNames } from '../../model/lib/helpers/classNames/classNames';
 
 import styles from './MenuSeparator.module.css';
 
-export type MenuSeparatorProps = {
+type MenuSeparatorProps = {
   className?: string;
 };
 

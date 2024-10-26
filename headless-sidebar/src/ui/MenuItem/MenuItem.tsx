@@ -5,25 +5,33 @@ import { useSidebar } from '../../model/hooks/useSidebarContext';
 
 import styles from './MenuItem.module.css';
 
-export type MenuItemProps = {
+type MenuItemProps = {
   className?: string;
   activeClassName?: string;
+  labelClassName?: string;
 
   isActive?: boolean;
-
-  icon: ReactNode;
-
+  icon?: ReactNode;
   RootComponent?: React.ReactElement;
 
   onClick?: () => void;
 } & ({ label: string; children?: never } | { children: ReactNode; label?: never });
 
 export const MenuItem = (props: MenuItemProps) => {
-  const { className, label, icon, isActive, activeClassName = '', children, RootComponent } = props;
+  const {
+    className,
+    activeClassName = '',
+    labelClassName,
+    label,
+    icon,
+    isActive,
+    children,
+    RootComponent
+  } = props;
   const { isOpen } = useSidebar();
 
   const getContent = () => {
-    if (isOpen) {
+    if (!isOpen) {
       return icon;
     }
 
@@ -31,8 +39,7 @@ export const MenuItem = (props: MenuItemProps) => {
       return (
         <>
           {icon}
-
-          <div>{label}</div>
+          <div className={classNames(styles.label, {}, [labelClassName])}>{label}</div>
         </>
       );
     }
@@ -49,9 +56,13 @@ export const MenuItem = (props: MenuItemProps) => {
   return (
     <li className={classNames(styles.menuItem, { [activeClassName]: isActive }, [className])}>
       {RootComponent ? (
-        React.cloneElement(RootComponent, RootComponent.props, <>{getContent()}</>)
+        React.cloneElement(
+          RootComponent,
+          { ...RootComponent.props, className: styles.menuItemInner },
+          <>{getContent()}</>
+        )
       ) : (
-        <div>{getContent()}</div>
+        <div className={styles.menuItemInner}>{getContent()}</div>
       )}
     </li>
   );

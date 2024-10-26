@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-export type CustomProps = {
+type CustomProps = {
   className?: string;
   children?: ReactNode;
 };

@@ -3,6 +3,7 @@ import external from 'rollup-plugin-peer-deps-external';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
 import postcss from 'rollup-plugin-postcss';
+import svgr from '@svgr/rollup';
 
 import packageJson from './package.json' assert { type: 'json' };
 
@@ -37,7 +38,8 @@ export default [
       postcss({
         modules: true,
         plugins: []
-      })
+      }),
+      svgr()
     ]
   }
 ];

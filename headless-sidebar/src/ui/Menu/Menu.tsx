@@ -4,7 +4,7 @@ import { classNames } from '../../model/lib/helpers/classNames/classNames';
 
 import styles from './Menu.module.css';
 
-export type MenuProps = {
+type MenuProps = {
   className?: string;
   children?: ReactNode;
 };
