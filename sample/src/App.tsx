@@ -8,8 +8,8 @@ function App() {
       <Sidebar className="sidebar">
         <Sidebar.Title title="Title" />
         <Sidebar.Menu>
-          <Sidebar.MenuItem label="asd" />
-          <Sidebar.MenuItem label="dsa" />
+          <Sidebar.MenuItem icon={'aa'} label="asd" />
+          <Sidebar.MenuItem icon={'bb'} label="dsa" />
         </Sidebar.Menu>
       </Sidebar>
     </>

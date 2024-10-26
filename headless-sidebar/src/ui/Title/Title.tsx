@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 export type TitleProps = {
   className?: string;
@@ -7,7 +7,7 @@ export type TitleProps = {
 };
 
 export const Title = (props: TitleProps) => {
-  const { title, className, isSidebarOpen } = props;
+  const { title, className } = props;
 
   return <div className={className}>{title}</div>;
 };

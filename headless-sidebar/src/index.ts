@@ -1,1 +1,1 @@
-export { Sidebar } from './ui/Sidebar/Sidebar';
+export { Entry as Sidebar } from './ui/Entry/Entry';
