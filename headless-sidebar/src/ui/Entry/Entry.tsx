@@ -2,15 +2,12 @@ import React, { ReactNode } from 'react';
 
 import { Title } from '../Title/Title';
 import { Menu } from '../Menu/Menu';
-import { MenuSeparator } from '../MenuSeparator/MenuSeparator';
 import { MenuItem } from '../MenuItem/MenuItem';
 import { SidebarContext } from '../../model/constants/sidebarContext';
 import { Sidebar } from '../Sidebar/Sidebar';
 import { Custom } from '../Custom/Custom';
 import { Collapsible } from '../Collapsible/Collapsible';
 import { ToggleButton } from '../ToggleButton/ToggleButton';
-
-import styles from './Entry.module.css';
 
 type Props = {
   children?: ReactNode;
@@ -30,9 +27,7 @@ export const Entry = (props: Props) => {
 
   return (
     <SidebarContext.Provider value={memoizedContextValue}>
-      <div className={styles['headless-sidebar-entry']}>
-        <Sidebar className={className}>{children}</Sidebar>
-      </div>
+      <Sidebar className={className}>{children}</Sidebar>
     </SidebarContext.Provider>
   );
 };
@@ -42,8 +37,6 @@ Entry.Title = Title;
 Entry.Menu = Menu;
 
 Entry.MenuItem = MenuItem;
-
-Entry.MenuSeparator = MenuSeparator;
 
 Entry.Custom = Custom;
 

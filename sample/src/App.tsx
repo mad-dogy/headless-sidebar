@@ -1,47 +1,68 @@
-import { Sidebar } from 'headless-sidebar';
+import { Sidebar } from '../../headless-sidebar/src';
 
 import HomeIcon from './shared/assets/homeOutline.svg';
 import ProfileIcon from './shared/assets/profile.svg';
 import BookmarkIcon from './shared/assets/bookmark.svg';
 import SettingsIcon from './shared/assets/settings.svg';
+import { Separator } from './shared/ui/Separator/Separator';
 
 import './App.css';
 
 function App() {
   return (
     <>
-      <Sidebar className="sidebar">
-        <Sidebar.Title title="Title" />
-        <Sidebar.Menu>
+      <Sidebar className="min-w-min max-w-md h-full p-8 flex flex-col gap-8 bg-gray-100">
+        <Sidebar.Title title="Title" className="text-3xl font-bold" />
+        <Sidebar.Menu className="p-0 m-0">
           <Sidebar.MenuItem
-            icon={<HomeIcon 
-              // @ts-ignore
-              width={24} height={24} />}
+            icon={<HomeIcon width={24} height={24} />}
             label="Home"
-            RootComponent={<span></span>}
-            className='aaa'
+            RootComponent={
+              <span className="p-4 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"></span>
+            }
+            labelClassName="text-xl"
           />
-          
-          <Sidebar.MenuItem 
-          // @ts-ignore
-          icon={<ProfileIcon width={24} height={24} />} label="Profile" />
-          <Sidebar.MenuSeparator />
+
+          <Sidebar.MenuItem
+            icon={<ProfileIcon width={24} height={24} />}
+            label="Profile"
+            className="p-4 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"
+            labelClassName="text-xl"
+          />
+          <Separator />
 
           <Sidebar.Collapsible
-          // @ts-ignore
             icon={<BookmarkIcon width={24} height={24} />}
             label="Bookmark collapsible"
+            headerClassName="p-4 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"
+            labelClassName="text-xl"
+            innerClassName="ml-8"
           >
-            <Sidebar.MenuItem label="Favourite sweets" />
-            <Sidebar.MenuItem label="Fav dolls" />
-            <Sidebar.MenuItem label="Fav girls" />
+            <Sidebar.MenuItem
+              label="Favourite sweets"
+              className="p-4 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"
+              labelClassName="text-xl"
+            />
+            <Sidebar.MenuItem
+              label="Fav dolls"
+              className="p-4 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"
+              labelClassName="text-xl"
+            />
+            <Sidebar.MenuItem
+              label="Fav girls"
+              className="p-4 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"
+              labelClassName="text-xl"
+            />
           </Sidebar.Collapsible>
 
-          <Sidebar.MenuSeparator />
+          <Separator />
 
-          <Sidebar.MenuItem icon={<SettingsIcon 
-          // @ts-ignore
-          width={24} height={24} />} label="Settings" />
+          <Sidebar.MenuItem
+            icon={<SettingsIcon width={24} height={24} />}
+            label="Settings"
+            className="p-4 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"
+            labelClassName="text-xl"
+          />
         </Sidebar.Menu>
 
         <Sidebar.ToggleButton />

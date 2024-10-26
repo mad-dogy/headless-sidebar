@@ -3,8 +3,6 @@ import React, { ReactNode } from 'react';
 import { classNames } from '../../model/lib/helpers/classNames/classNames';
 import { useSidebar } from '../../model/hooks/useSidebarContext';
 
-import styles from './MenuItem.module.css';
-
 type MenuItemProps = {
   className?: string;
   activeClassName?: string;
@@ -39,7 +37,7 @@ export const MenuItem = (props: MenuItemProps) => {
       return (
         <>
           {icon}
-          <div className={classNames(styles.label, {}, [labelClassName])}>{label}</div>
+          <div className={labelClassName}>{label}</div>
         </>
       );
     }
@@ -54,16 +52,10 @@ export const MenuItem = (props: MenuItemProps) => {
   };
 
   return (
-    <li className={classNames(styles.menuItem, { [activeClassName]: isActive }, [className])}>
-      {RootComponent ? (
-        React.cloneElement(
-          RootComponent,
-          { ...RootComponent.props, className: styles.menuItemInner },
-          <>{getContent()}</>
-        )
-      ) : (
-        <div className={styles.menuItemInner}>{getContent()}</div>
-      )}
+    <li className={classNames('', { [activeClassName]: isActive }, [className])}>
+      {RootComponent
+        ? React.cloneElement(RootComponent, RootComponent.props, <>{getContent()}</>)
+        : getContent()}
     </li>
   );
 };
