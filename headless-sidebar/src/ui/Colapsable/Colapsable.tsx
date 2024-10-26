@@ -2,15 +2,17 @@ import React, { ReactNode } from 'react';
 
 import { classNames } from '../../model/lib/helpers/classNames/classNames';
 
-import styles from './Menu.module.css';
+import styles from './Colapsable.module.css';
 
-export type MenuProps = {
+export type ColapsableProps = {
   className?: string;
   children?: ReactNode;
+  openByDefault?: boolean;
+  label: string;
 };
 
-export const Menu = (props: MenuProps) => {
-  const { className, children } = props;
-
+export const Colapsable = (props: ColapsableProps) => {
+  const { className, children, openByDefault } = props;
+  openByDefault;
   return <ul className={classNames(styles.container, {}, [className])}>{children}</ul>;
 };

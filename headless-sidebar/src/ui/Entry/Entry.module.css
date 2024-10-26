@@ -1,0 +1,36 @@
+.headless-sidebar-entry * {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.headless-sidebar-entry *,
+.headless-sidebar-entry *::before,
+.headless-sidebar-entry *::after {
+  box-sizing: border-box;
+}
+
+.headless-sidebar-entry ul[class],
+.headless-sidebar-entry ol[class] {
+  padding: 0;
+}
+
+.headless-sidebar-entry ul[class] {
+  list-style: none;
+}
+
+.headless-sidebar-entry ol[class] {
+  list-style: none;
+}
+
+.headless-sidebar-entry li {
+  list-style: none;
+}
+
+.headless-sidebar-entry ul {
+  padding: 0;
+  margin: 0;
+}
+

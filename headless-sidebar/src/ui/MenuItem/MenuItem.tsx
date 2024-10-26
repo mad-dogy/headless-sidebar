@@ -10,24 +10,37 @@ export type MenuItemProps = {
   isSidebarOpen?: boolean;
 
   icon: ReactNode;
+
+  RootComponent?: React.ReactElement;
+
+  onClick?: () => void;
 } & ({ label: string; children?: never } | { children: ReactNode; label?: never });
 
 export const MenuItem = (props: MenuItemProps) => {
-  const { className, label, icon, activeClassName = '', children } = props;
-
+  const { className, label, icon, activeClassName = '', children, RootComponent } = props;
   const { isOpen } = useSidebar();
 
-  return (
-    <div className={classNames('', { [activeClassName]: isOpen }, [className])}>
-      {label ? (
+  const getContent = () => {
+    if (label) {
+      return (
         <>
           {icon}
 
           <div>{label}</div>
         </>
+      );
+    }
+
+    return children;
+  };
+
+  return (
+    <li className={classNames('', { [activeClassName]: isOpen }, [className])}>
+      {RootComponent ? (
+        React.cloneElement(RootComponent, RootComponent.props, <>{getContent()}</>)
       ) : (
-        children
+        <div>{getContent()}</div>
       )}
-    </div>
+    </li>
   );
 };
