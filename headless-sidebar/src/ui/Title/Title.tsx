@@ -1,13 +1,26 @@
 import React from 'react';
 
-type TitleProps = {
+import { useSidebar } from '../../model/hooks/useSidebarContext';
+
+type Props = {
   className?: string;
+  closedClassName?: string;
   title: string;
-  isSidebarOpen?: boolean;
+  closedTitle?: string;
 };
 
-export const Title = (props: TitleProps) => {
-  const { title, className } = props;
+export const Title = (props: Props) => {
+  const { title, closedTitle, className, closedClassName } = props;
 
-  return <div className={className}>{title}</div>;
+  const { isOpen } = useSidebar();
+
+  const getTitle = () => {
+    if (!isOpen && closedTitle) {
+      return closedTitle;
+    }
+
+    return title;
+  };
+
+  return <div className={isOpen ? className : closedClassName}>{getTitle()}</div>;
 };

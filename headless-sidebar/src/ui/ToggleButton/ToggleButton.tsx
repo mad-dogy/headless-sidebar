@@ -1,18 +1,40 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-import AngleLeft from '../../assets/arrowLeft.svg';
+import AngleLeft from '../../assets/angleLeft.svg';
+import AngleRight from '../../assets/angleRight.svg';
+import { useSidebar } from '../../model/hooks/useSidebarContext';
 
 type ToggleButtonProps = {
   className?: string;
-  isSidebarOpen?: boolean;
+  openStateButton?: ReactNode;
+  closeStateButton?: ReactNode;
+  onClick: () => void;
 };
 
 export const ToggleButton = (props: ToggleButtonProps) => {
-  const { className } = props;
+  const { className, openStateButton, closeStateButton, onClick } = props;
+
+  const { isOpen } = useSidebar();
+
+  const getOpenStateButton = () => {
+    if (openStateButton) {
+      return openStateButton;
+    }
+
+    return <AngleLeft width={24} height={24} />;
+  };
+
+  const getCloseStateButton = () => {
+    if (openStateButton) {
+      return closeStateButton;
+    }
+
+    return <AngleRight width={24} height={24} />;
+  };
 
   return (
-    <div className={className}>
-      <AngleLeft />
-    </div>
+    <button className={className} onClick={onClick}>
+      {isOpen ? getOpenStateButton() : getCloseStateButton()}
+    </button>
   );
 };

@@ -1,22 +1,20 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 import { Title } from '../Title/Title';
 import { Menu } from '../Menu/Menu';
 import { MenuItem } from '../MenuItem/MenuItem';
 import { SidebarContext } from '../../model/constants/sidebarContext';
-import { Sidebar } from '../Sidebar/Sidebar';
+import { Sidebar, SidebarProps } from '../Sidebar/Sidebar';
 import { Custom } from '../Custom/Custom';
 import { Collapsible } from '../Collapsible/Collapsible';
 import { ToggleButton } from '../ToggleButton/ToggleButton';
 
-type Props = {
-  children?: ReactNode;
-  className?: string;
+type Props = SidebarProps & {
   isOpen?: boolean;
 };
 
 export const Entry = (props: Props) => {
-  const { children, className, isOpen = true } = props;
+  const { isOpen = true, ...sidebarProps } = props;
 
   const memoizedContextValue = React.useMemo(
     () => ({
@@ -27,7 +25,7 @@ export const Entry = (props: Props) => {
 
   return (
     <SidebarContext.Provider value={memoizedContextValue}>
-      <Sidebar className={className}>{children}</Sidebar>
+      <Sidebar {...sidebarProps} />
     </SidebarContext.Provider>
   );
 };

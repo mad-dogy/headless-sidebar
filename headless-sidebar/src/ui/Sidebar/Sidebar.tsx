@@ -1,15 +1,17 @@
 import React, { ReactNode } from 'react';
 
-type Props = {
+import { useSidebar } from '../../model/hooks/useSidebarContext';
+
+export type SidebarProps = {
   children?: ReactNode;
   className?: string;
-  isOpen?: boolean;
+  closedClassName?: string;
 };
 
-export const Sidebar = (props: Props) => {
-  const { children, className } = props;
+export const Sidebar = (props: SidebarProps) => {
+  const { children, className, closedClassName } = props;
 
-  /*   const { isOpen } = useSidebar(); */
+  const { isOpen } = useSidebar();
 
-  return <div className={className}>{children}</div>;
+  return <div className={isOpen ? className : closedClassName}>{children}</div>;
 };

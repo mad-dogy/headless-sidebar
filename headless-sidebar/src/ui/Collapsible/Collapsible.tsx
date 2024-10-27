@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 
 import { MenuItem } from '../MenuItem/MenuItem';
+import { useSidebar } from '../../model/hooks/useSidebarContext';
 
 type CollapsibleProps = {
   className?: string;
@@ -16,6 +17,19 @@ type CollapsibleProps = {
 export const Collapsible = (props: CollapsibleProps) => {
   const { className, children, icon, label, labelClassName, innerClassName, headerClassName } =
     props;
+
+  const { isOpen } = useSidebar();
+
+  if (!isOpen) {
+    return (
+      <MenuItem
+        icon={icon}
+        label={label}
+        className={headerClassName}
+        labelClassName={labelClassName}
+      />
+    );
+  }
 
   return (
     <li className={className}>
