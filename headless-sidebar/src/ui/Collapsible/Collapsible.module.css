@@ -3,18 +3,18 @@
   flex-direction: row;
 }
 
-.menuContainer {
+.dropdownContainer {
   position: relative;
 }
 
-.menu {
+.dropdown {
   display: block;
   visibility: visible;
   position: absolute;
   top: 0;
 }
 
-.menuOpened {
+.shownDropdown {
   visibility: hidden;
   display: none;
 }

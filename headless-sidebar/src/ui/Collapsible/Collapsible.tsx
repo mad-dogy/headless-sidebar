@@ -1,18 +1,22 @@
 import React, { ReactNode, useCallback, useLayoutEffect, useState } from 'react';
 
-import { classNames } from '../../model/lib/helpers/classNames/classNames';
+import { classNames as classNamesHelper } from '../../model/lib/helpers/classNames/classNames';
 import { MenuItem } from '../MenuItem/MenuItem';
 import { useSidebar } from '../../model/hooks/useSidebarContext';
 
 import styles from './Collapsible.module.css';
 
+type ClassNames = {
+  container?: string;
+  header?: string;
+  label?: string;
+  inner?: string;
+  dropdown?: string;
+  activeHeader?: string;
+};
+
 type CollapsibleProps = {
-  className?: string;
-  headerClassName?: string;
-  labelClassName?: string;
-  innerClassName?: string;
-  dropdownMenuClassName?: string;
-  activeClassName?: string;
+  classNames?: ClassNames;
 
   children?: ReactNode;
   label: string;
@@ -22,23 +26,12 @@ type CollapsibleProps = {
 };
 
 export const Collapsible = (props: CollapsibleProps) => {
-  const {
-    className,
-    children,
-    icon,
-    label,
-    labelClassName,
-    innerClassName,
-    headerClassName,
-    dropdownMenuClassName,
-    activeClassName,
-    active
-  } = props;
+  const { children, icon, label, active, classNames } = props;
 
   const { isOpen } = useSidebar();
 
   const [expanded, setExpanded] = useState(active);
-  const [openMenu, setOpenMenu] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   useLayoutEffect(() => {
     if (active) {
@@ -47,38 +40,49 @@ export const Collapsible = (props: CollapsibleProps) => {
   }, [active]);
 
   const onMouseMove = useCallback(() => {
-    setOpenMenu(true);
+    setShowDropdown(true);
   }, []);
 
   const onMouseLeave = useCallback(() => {
-    setOpenMenu(false);
+    setShowDropdown(false);
   }, []);
 
   const onMenuItemClick = useCallback(() => {
     setExpanded(true);
   }, []);
 
+  const getMenuItem = () => {
+    return (
+      <MenuItem
+        icon={icon}
+        label={label}
+        classNames={{
+          container: classNames?.header,
+          label: classNames?.label,
+          activeContainer: classNames?.activeHeader
+        }}
+        onClick={onMenuItemClick}
+        active={active}
+      />
+    );
+  };
+
   if (!isOpen) {
     return (
       <li
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
-        className={classNames(styles.collapsible)}
+        className={classNamesHelper(styles.collapsible, {}, [classNames?.container])}
       >
-        <MenuItem
-          icon={icon}
-          label={label}
-          className={headerClassName}
-          labelClassName={labelClassName}
-          activeClassName={activeClassName}
-          active={active}
-        />
+        {getMenuItem()}
 
-        <div className={styles.menuContainer}>
+        <div className={styles.dropdownContainer}>
           <ul
-            className={classNames(styles.menu, { [styles.menuOpened]: !openMenu }, [
-              dropdownMenuClassName
-            ])}
+            className={classNamesHelper(
+              styles.dropdown,
+              { [styles.shownDropdown]: !showDropdown },
+              [classNames?.dropdown]
+            )}
           >
             {children}
           </ul>
@@ -88,22 +92,10 @@ export const Collapsible = (props: CollapsibleProps) => {
   }
 
   return (
-    <li className={className}>
-      <MenuItem
-        icon={icon}
-        label={label}
-        className={headerClassName}
-        labelClassName={labelClassName}
-        activeClassName={activeClassName}
-        onClick={onMenuItemClick}
-        active={active}
-      />
+    <li className={classNames?.container}>
+      {getMenuItem()}
 
-      {expanded ? (
-        <ul className={innerClassName} title={label}>
-          {children}
-        </ul>
-      ) : null}
+      {expanded ? <ul className={classNames?.inner}>{children}</ul> : null}
     </li>
   );
 };

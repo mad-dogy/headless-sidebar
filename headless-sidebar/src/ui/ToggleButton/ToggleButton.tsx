@@ -33,7 +33,7 @@ export const ToggleButton = (props: ToggleButtonProps) => {
   };
 
   return (
-    <button className={className} onClick={onClick}>
+    <button aria-pressed className={className} onClick={onClick}>
       {isOpen ? getOpenStateButton() : getCloseStateButton()}
     </button>
   );

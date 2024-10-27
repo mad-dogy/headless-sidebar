@@ -2,15 +2,19 @@ import React from 'react';
 
 import { useSidebar } from '../../model/hooks/useSidebarContext';
 
+type ClassNames = {
+  opened?: string;
+  closed?: string;
+};
+
 type Props = {
-  className?: string;
-  closedClassName?: string;
+  classNames?: ClassNames;
   title: string;
   closedTitle?: string;
 };
 
 export const Title = (props: Props) => {
-  const { title, closedTitle, className, closedClassName } = props;
+  const { title, closedTitle, classNames } = props;
 
   const { isOpen } = useSidebar();
 
@@ -22,5 +26,5 @@ export const Title = (props: Props) => {
     return title;
   };
 
-  return <div className={isOpen ? className : closedClassName}>{getTitle()}</div>;
+  return <div className={isOpen ? classNames?.opened : classNames?.closed}>{getTitle()}</div>;
 };

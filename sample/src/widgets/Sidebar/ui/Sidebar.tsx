@@ -39,29 +39,35 @@ export const Sidebar = (props: Props) => {
       isOpen={isOpen}
     >
       <HeadlessSidebar.Title
-        title="Title"
-        closedTitle="Te"
-        className="text-3xl font-bold"
-        closedClassName="text-3xl font-bold text-center"
+        title="Headless sidebar"
+        closedTitle="HS"
+        classNames={{
+          opened: 'text-3xl font-bold',
+          closed: 'text-3xl font-bold text-center'
+        }}
       />
-      <HeadlessSidebar.Menu className="p-0 m-0">
+      <HeadlessSidebar.Menu className="p-0 m-0 flex gap-2 flex-col">
         <HeadlessSidebar.MenuItem
           icon={<Icon Svg={HomeIcon} />}
           label="Home"
-          labelClassName="text-xl"
+          classNames={{
+            container: 'p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200',
+            activeContainer: 'bg-blue-100 hover:bg-blue-200',
+            label: 'text-xl'
+          }}
           RootComponent={<NavLink to={routes.home()} />}
-          className="p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"
-          activeClassName="bg-blue-100 hover:bg-blue-200"
           active={location.pathname === routes.home()}
         />
 
         <HeadlessSidebar.MenuItem
           icon={<Icon Svg={ProfileIcon} />}
           label="Profile"
-          labelClassName="text-xl"
           RootComponent={<NavLink to={routes.profile()} />}
-          className="p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"
-          activeClassName="bg-blue-100 hover:bg-blue-200"
+          classNames={{
+            container: 'p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200',
+            activeContainer: 'bg-blue-100 hover:bg-blue-200',
+            label: 'text-xl'
+          }}
           active={location.pathname === routes.profile()}
         />
         <Separator />
@@ -69,11 +75,14 @@ export const Sidebar = (props: Props) => {
         <HeadlessSidebar.Collapsible
           icon={<Icon Svg={InventoryIcon} />}
           label="Inventory"
-          headerClassName="p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"
-          labelClassName="text-xl"
-          innerClassName="ml-8"
-          dropdownMenuClassName="w-max p-2 bg-gray-50 rounded-xl flex flex-col gap-2"
-          activeClassName="bg-blue-100 hover:bg-blue-200"
+          classNames={{
+            container: 'flex flex-col gap-2',
+            header: 'p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200',
+            label: 'text-xl',
+            inner: 'ml-8 flex flex-col gap-2',
+            dropdown: 'w-max p-2 bg-gray-50 rounded-xl flex flex-col gap-2',
+            activeHeader: 'bg-blue-100 hover:bg-blue-200'
+          }}
           active={
             location.pathname === routes.products() ||
             location.pathname === routes.orders() ||
@@ -82,26 +91,32 @@ export const Sidebar = (props: Props) => {
         >
           <HeadlessSidebar.MenuItem
             label="Products"
-            labelClassName="text-xl"
             RootComponent={<NavLink to={routes.products()} />}
-            className="p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"
-            activeClassName="bg-blue-100 hover:bg-blue-200"
+            classNames={{
+              container: 'p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200',
+              activeContainer: 'bg-blue-100 hover:bg-blue-200',
+              label: 'text-xl'
+            }}
             active={location.pathname === routes.products()}
           />
           <HeadlessSidebar.MenuItem
             label="Orders"
-            labelClassName="text-xl"
             RootComponent={<NavLink to={routes.orders()} />}
-            className="p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"
-            activeClassName="bg-blue-100 hover:bg-blue-200"
+            classNames={{
+              container: 'p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200',
+              activeContainer: 'bg-blue-100 hover:bg-blue-200',
+              label: 'text-xl'
+            }}
             active={location.pathname === routes.orders()}
           />
           <HeadlessSidebar.MenuItem
             label="Supplies"
-            labelClassName="text-xl"
             RootComponent={<NavLink to={routes.supplies()} />}
-            className="p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"
-            activeClassName="bg-blue-100 hover:bg-blue-200"
+            classNames={{
+              container: 'p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200',
+              activeContainer: 'bg-blue-100 hover:bg-blue-200',
+              label: 'text-xl'
+            }}
             active={location.pathname === routes.supplies()}
           />
         </HeadlessSidebar.Collapsible>
@@ -111,19 +126,23 @@ export const Sidebar = (props: Props) => {
         <HeadlessSidebar.MenuItem
           icon={<Icon Svg={SettingsIcon} />}
           label="Settings"
-          labelClassName="text-xl"
           RootComponent={<NavLink to={routes.settings()} />}
-          className="p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"
-          activeClassName="bg-blue-100 hover:bg-blue-200"
+          classNames={{
+            container: 'p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200',
+            activeContainer: 'bg-blue-100 hover:bg-blue-200',
+            label: 'text-xl'
+          }}
           active={location.pathname === routes.settings()}
         />
 
         <HeadlessSidebar.MenuItem
           icon={<Icon Svg={CommentIcon} />}
           label="Say hi"
-          labelClassName="text-xl"
-          className="p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"
-          activeClassName="bg-blue-100 hover:bg-blue-200"
+          classNames={{
+            container: 'p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200',
+            activeContainer: 'bg-blue-100 hover:bg-blue-200',
+            label: 'text-xl'
+          }}
           onClick={() => {
             alert('hi');
           }}
@@ -134,6 +153,19 @@ export const Sidebar = (props: Props) => {
         className="p-2 hover:bg-gray-200 max-w-min rounded-xl"
         onClick={toggleOpen}
       />
+
+      {isOpen ? (
+        <HeadlessSidebar.Custom className="p-2 bg-gray-200  w-full rounded-xl">
+          <div>
+            <h5 className="text-red-400 font-medium text-lg">Custom element</h5>
+
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius dapibus lorem non
+              blandit. Nullam finibus quam lacus.
+            </p>
+          </div>
+        </HeadlessSidebar.Custom>
+      ) : null}
     </HeadlessSidebar>
   );
 };
