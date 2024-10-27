@@ -15,5 +15,8 @@ export default defineConfig({
       exclude: ''
     }),
     react()
-  ]
+  ],
+  resolve: {
+    alias: [{ find: '@', replacement: '/src' }]
+  }
 });
