@@ -1,0 +1,13 @@
+.collapsible {
+  display: flex;
+  flex-direction: row;
+}
+
+.menuContainer {
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+}

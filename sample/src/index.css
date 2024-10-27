@@ -28,11 +28,6 @@ html {
   overflow-y: scroll;
 }
 
-ul[class],
-ol[class] {
-  padding: 0;
-}
-
 body,
 h1,
 h2,

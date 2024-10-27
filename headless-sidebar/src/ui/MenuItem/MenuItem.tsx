@@ -12,6 +12,8 @@ type MenuItemProps = {
   icon?: ReactNode;
   RootComponent?: React.ReactElement;
 
+  isInsideCollapbible?: boolean;
+
   onClick?: () => void;
 } & ({ label: string; children?: never } | { children: ReactNode; label?: never });
 
@@ -24,11 +26,16 @@ export const MenuItem = (props: MenuItemProps) => {
     icon,
     isActive,
     children,
-    RootComponent
+    RootComponent,
+    isInsideCollapbible
   } = props;
   const { isOpen } = useSidebar();
 
   const getContent = () => {
+    if (isInsideCollapbible) {
+      return <div className={labelClassName}>{label}</div>;
+    }
+
     if (!isOpen) {
       return icon;
     }

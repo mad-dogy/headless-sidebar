@@ -50,21 +50,25 @@ function App() {
             headerClassName="p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"
             labelClassName="text-xl"
             innerClassName="ml-8"
+            dropdownMenuClassName="w-max p-2 bg-gray-50 rounded-xl flex flex-col gap-2"
           >
             <Sidebar.MenuItem
               label="Favourite sweets"
               className="p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"
               labelClassName="text-xl"
+              isInsideCollapbible
             />
             <Sidebar.MenuItem
               label="Fav dolls"
               className="p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"
               labelClassName="text-xl"
+              isInsideCollapbible
             />
             <Sidebar.MenuItem
               label="Fav girls"
               className="p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200"
               labelClassName="text-xl"
+              isInsideCollapbible
             />
           </Sidebar.Collapsible>
 
