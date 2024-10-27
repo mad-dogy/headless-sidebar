@@ -1,18 +1,19 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useCallback } from 'react';
 
 import { classNames } from '../../model/lib/helpers/classNames/classNames';
 import { useSidebar } from '../../model/hooks/useSidebarContext';
 
 type MenuItemProps = {
+  id?: string;
+
   className?: string;
   activeClassName?: string;
   labelClassName?: string;
 
-  isActive?: boolean;
   icon?: ReactNode;
   RootComponent?: React.ReactElement;
 
-  isInsideCollapbible?: boolean;
+  active?: boolean;
 
   onClick?: () => void;
 } & ({ label: string; children?: never } | { children: ReactNode; label?: never });
@@ -24,15 +25,24 @@ export const MenuItem = (props: MenuItemProps) => {
     labelClassName,
     label,
     icon,
-    isActive,
     children,
     RootComponent,
-    isInsideCollapbible
+    onClick,
+    active,
+    id
   } = props;
-  const { isOpen } = useSidebar();
+  const { isOpen, onItemChange } = useSidebar();
+
+  const onClickHandler = useCallback(() => {
+    if (!active) {
+      onItemChange?.(id);
+    }
+
+    onClick?.();
+  }, [active, onClick, onItemChange, id]);
 
   const getContent = () => {
-    if (isInsideCollapbible) {
+    if (!icon) {
       return <div className={labelClassName}>{label}</div>;
     }
 
@@ -59,10 +69,21 @@ export const MenuItem = (props: MenuItemProps) => {
   };
 
   return (
-    <li className={classNames('', { [activeClassName]: isActive }, [className])}>
-      {RootComponent
-        ? React.cloneElement(RootComponent, RootComponent.props, <>{getContent()}</>)
-        : getContent()}
+    <li onClick={onClickHandler}>
+      {RootComponent ? (
+        React.cloneElement(
+          RootComponent,
+          {
+            ...RootComponent.props,
+            className: classNames('', { [activeClassName]: active }, [className])
+          },
+          <>{getContent()}</>
+        )
+      ) : (
+        <div className={classNames('', { [activeClassName]: active }, [className])}>
+          {getContent()}
+        </div>
+      )}
     </li>
   );
 };

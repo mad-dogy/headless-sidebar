@@ -1,7 +1,3 @@
-import { Link } from "react-router-dom";
-
 export const HomePage = () => {
-  return <h3>Home Page
-    <Link to={'/profile'}>to profile</Link>
-  </h3>;
+  return <h3 className="w-full flex items-center justify-center">Home Page</h3>;
 };

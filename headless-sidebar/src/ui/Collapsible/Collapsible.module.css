@@ -8,6 +8,13 @@
 }
 
 .menu {
+  display: block;
+  visibility: visible;
   position: absolute;
   top: 0;
+}
+
+.menuOpened {
+  visibility: hidden;
+  display: none;
 }

@@ -1,13 +1,20 @@
 const getRouteHome = () => '/';
 const getRouteProfile = () => '/profile';
-const getRouteBookmark = () => '/bookmark';
+const getRouteInventory = () => '/inventory';
+const getRouteProducts = () => '/inventory/products';
+const getRouteOrders = () => '/inventory/orders';
+const getRouteSupplies = () => '/inventory/supplies';
+
 const getRouteSettings = () => '/settings';
 const getRouteNotFound = () => '*';
 
 export const routes = {
   home: getRouteHome,
   profile: getRouteProfile,
-  bookmark: getRouteBookmark,
+  inventory: getRouteInventory,
+  products: getRouteProducts,
+  orders: getRouteOrders,
+  supplies: getRouteSupplies,
   settings: getRouteSettings,
   notFound: getRouteNotFound
 };

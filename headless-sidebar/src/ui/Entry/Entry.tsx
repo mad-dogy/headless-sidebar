@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Title } from '../Title/Title';
 import { Menu } from '../Menu/Menu';
@@ -8,19 +8,22 @@ import { Sidebar, SidebarProps } from '../Sidebar/Sidebar';
 import { Custom } from '../Custom/Custom';
 import { Collapsible } from '../Collapsible/Collapsible';
 import { ToggleButton } from '../ToggleButton/ToggleButton';
+import { SidebarContext as SidebarContextType } from '../../model/types/sidebarContext';
 
 type Props = SidebarProps & {
   isOpen?: boolean;
+  onItemChange?: (id?: string) => void;
 };
 
 export const Entry = (props: Props) => {
-  const { isOpen = true, ...sidebarProps } = props;
+  const { isOpen = true, onItemChange, ...sidebarProps } = props;
 
-  const memoizedContextValue = React.useMemo(
+  const memoizedContextValue = React.useMemo<SidebarContextType>(
     () => ({
-      isOpen
+      isOpen,
+      onItemChange
     }),
-    [isOpen]
+    [onItemChange, isOpen]
   );
 
   return (
