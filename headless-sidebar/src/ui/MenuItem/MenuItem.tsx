@@ -3,10 +3,13 @@ import React, { ReactNode, useCallback } from 'react';
 import { classNames as classNamesHelper } from '../../model/lib/helpers/classNames/classNames';
 import { useSidebar } from '../../model/hooks/useSidebarContext';
 
+import styles from './MenuItem.module.css';
+
 type ClassNames = {
   container?: string;
   activeContainer?: string;
   label?: string;
+  closedContainer?: string;
 };
 
 type MenuItemProps = {
@@ -62,7 +65,7 @@ export const MenuItem = (props: MenuItemProps) => {
   ]);
 
   return (
-    <li onClick={onClickHandler}>
+    <li onClick={onClickHandler} className={isOpen ? undefined : styles.container_close}>
       {RootComponent ? (
         React.cloneElement(
           RootComponent,

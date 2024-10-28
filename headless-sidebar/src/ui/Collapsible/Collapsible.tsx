@@ -11,11 +11,13 @@ import styles from './Collapsible.module.css';
 
 type ClassNames = {
   container?: string;
+
   header?: string;
+  activeHeader?: string;
+
   label?: string;
   inner?: string;
   dropdown?: string;
-  activeHeader?: string;
 };
 
 type Props = {

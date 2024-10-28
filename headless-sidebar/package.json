@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "prebuild": "rm -rf ./build",
-    "build": "rm -rf ./build && rollup --config",
+    "build": "npm run prebuild && rollup --config",
     "lint": "eslint ."
   },
   "devDependencies": {

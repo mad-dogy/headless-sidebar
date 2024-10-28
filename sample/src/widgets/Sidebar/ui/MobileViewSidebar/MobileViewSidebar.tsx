@@ -1,4 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
+import { Sidebar as HeadlessSidebar } from 'headless-sidebar';
 
 import { Icon } from '@/shared/ui/Icon';
 import { Separator } from '@/shared/ui/Separator/Separator/Separator';
@@ -10,10 +11,9 @@ import CommentIcon from '@/shared/assets/comment.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { routes } from '@/shared/constants/router';
 
-import { Sidebar as HeadlessSidebar } from 'headless-sidebar';
 import { SidebarProps } from '../Sidebar/Sidebar';
 
-type Props = SidebarProps
+type Props = SidebarProps;
 
 export const MobileViewSidebar = (props: Props) => {
   const { className } = props;
@@ -22,11 +22,9 @@ export const MobileViewSidebar = (props: Props) => {
 
   return (
     <HeadlessSidebar
-      className={classNames(
-        'w-full fixed bottom-0 right-0 left-0 p-4 flex bg-gray-100',
-        {},
-        [className]
-      )}
+      className={classNames('w-full fixed bottom-0 right-0 left-0 p-4 flex bg-gray-100', {}, [
+        className
+      ])}
     >
       <HeadlessSidebar.Menu className="w-full flex gap-2 items-center justify-between">
         <HeadlessSidebar.MenuItem
@@ -52,7 +50,7 @@ export const MobileViewSidebar = (props: Props) => {
           }}
           active={location.pathname === routes.profile()}
         />
-        <Separator direction='vertical' />
+        <Separator direction="vertical" />
 
         <HeadlessSidebar.Collapsible
           icon={<Icon Svg={InventoryIcon} />}
@@ -103,7 +101,7 @@ export const MobileViewSidebar = (props: Props) => {
           />
         </HeadlessSidebar.Collapsible>
 
-        <Separator direction='vertical' />
+        <Separator direction="vertical" />
 
         <HeadlessSidebar.MenuItem
           icon={<Icon Svg={SettingsIcon} />}
@@ -121,8 +119,7 @@ export const MobileViewSidebar = (props: Props) => {
           icon={<Icon Svg={CommentIcon} />}
           label="Say hi"
           classNames={{
-            container:
-              'p-2 flex flex-col gap-2 items-center rounded-xl hover:bg-gray-200',
+            container: 'p-2 flex flex-col gap-2 items-center rounded-xl hover:bg-gray-200',
             activeContainer: 'bg-blue-100 hover:bg-blue-200',
             label: 'text-l'
           }}

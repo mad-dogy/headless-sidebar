@@ -1,5 +1,6 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { useCallback } from 'react';
+import { Sidebar as HeadlessSidebar } from 'headless-sidebar';
 
 import { Icon } from '@/shared/ui/Icon';
 import { Separator } from '@/shared/ui/Separator/Separator/Separator';
@@ -11,10 +12,9 @@ import CommentIcon from '@/shared/assets/comment.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { routes } from '@/shared/constants/router';
 
-import { Sidebar as HeadlessSidebar } from 'headless-sidebar';
 import { SidebarProps } from '../Sidebar/Sidebar';
 
-type Props = SidebarProps
+type Props = SidebarProps;
 
 export const BrowserViewSidebar = (props: Props) => {
   const { className, isOpen, setOpen } = props;
@@ -76,10 +76,10 @@ export const BrowserViewSidebar = (props: Props) => {
             container: 'flex flex-col gap-2',
             header:
               'p-2 flex gap-4 items-center w-full rounded-xl cursor-pointer hover:bg-gray-200',
+            activeHeader: 'bg-blue-100 hover:bg-blue-200',
             label: 'text-xl',
             inner: 'ml-8 mr-8 flex flex-col gap-2',
-            dropdown: 'w-max p-2 bg-gray-50 rounded-xl flex flex-col gap-2',
-            activeHeader: 'bg-blue-100 hover:bg-blue-200'
+            dropdown: 'w-max p-2 bg-gray-50 rounded-xl flex flex-col gap-2'
           }}
           active={
             location.pathname === routes.products() ||

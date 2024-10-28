@@ -1,4 +1,5 @@
 import { BrowserView, MobileView } from 'react-device-detect';
+
 import { BrowserViewSidebar } from '../BrowserViewSidebar/BrowserViewSidebar';
 import { MobileViewSidebar } from '../MobileViewSidebar/MobileViewSidebar';
 
@@ -9,16 +10,15 @@ export type SidebarProps = {
 };
 
 export const Sidebar = (props: SidebarProps) => {
-
   return (
     <>
-    <BrowserView>
-      <BrowserViewSidebar {...props} />
-    </BrowserView>
+      <BrowserView>
+        <BrowserViewSidebar {...props} />
+      </BrowserView>
 
-    <MobileView>
-      <MobileViewSidebar {...props} />
-    </MobileView>
+      <MobileView>
+        <MobileViewSidebar {...props} />
+      </MobileView>
     </>
   );
 };
