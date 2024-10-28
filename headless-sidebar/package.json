@@ -11,6 +11,9 @@
     "build": "rm -rf ./build && rollup --config",
     "lint": "eslint ."
   },
+  "dependencies": {
+    "react-device-detect": "^2.2.3"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.1",
     "@rollup/plugin-node-resolve": "^15.3.0",

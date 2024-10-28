@@ -1,4 +1,5 @@
-import React, { ReactNode, useCallback, useLayoutEffect, useState } from 'react';
+import React, { ReactNode, useCallback, useLayoutEffect, useMemo, useState } from 'react';
+import { BrowserView, MobileView } from 'react-device-detect';
 
 import { classNames as classNamesHelper } from '../../model/lib/helpers/classNames/classNames';
 import { MenuItem } from '../MenuItem/MenuItem';
@@ -51,16 +52,21 @@ export const Collapsible = (props: CollapsibleProps) => {
     setExpanded(true);
   }, []);
 
+  const menuItemClassnames = useMemo(
+    () => ({
+      container: classNames?.header,
+      label: classNames?.label,
+      activeContainer: classNames?.activeHeader
+    }),
+    [classNames]
+  );
+
   const getMenuItem = () => {
     return (
       <MenuItem
         icon={icon}
         label={label}
-        classNames={{
-          container: classNames?.header,
-          label: classNames?.label,
-          activeContainer: classNames?.activeHeader
-        }}
+        classNames={menuItemClassnames}
         onClick={onMenuItemClick}
         active={active}
       />
@@ -95,7 +101,30 @@ export const Collapsible = (props: CollapsibleProps) => {
     <li className={classNames?.container}>
       {getMenuItem()}
 
-      {expanded ? <ul className={classNames?.inner}>{children}</ul> : null}
+      <BrowserView>
+        {expanded ? <ul className={classNames?.inner}>{children}</ul> : null}
+      </BrowserView>
+
+      <MobileView>
+        <div
+          className={classNamesHelper(styles.backdrop, { [styles.backdrop_active]: expanded }, [])}
+          onClick={() => {
+            setExpanded(false);
+          }}
+        ></div>
+        <div
+          onClick={() => {
+            setExpanded(false);
+          }}
+          className={classNamesHelper(
+            styles.mobileMenu,
+            { [styles.mobileMenu_active]: expanded },
+            []
+          )}
+        >
+          <ul className={classNames?.inner}>{children}</ul>
+        </div>
+      </MobileView>
     </li>
   );
 };

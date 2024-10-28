@@ -79,7 +79,7 @@ export const Sidebar = (props: Props) => {
             container: 'flex flex-col gap-2',
             header: 'p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200',
             label: 'text-xl',
-            inner: 'ml-8 flex flex-col gap-2',
+            inner: 'ml-8 mr-8 flex flex-col gap-2',
             dropdown: 'w-max p-2 bg-gray-50 rounded-xl flex flex-col gap-2',
             activeHeader: 'bg-blue-100 hover:bg-blue-200'
           }}
