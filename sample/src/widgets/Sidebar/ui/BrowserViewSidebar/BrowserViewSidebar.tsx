@@ -2,7 +2,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useCallback } from 'react';
 
 import { Icon } from '@/shared/ui/Icon';
-import { Separator } from '@/shared/ui/Separator/Separator';
+import { Separator } from '@/shared/ui/Separator/Separator/Separator';
 import HomeIcon from '@/shared/assets/homeOutline.svg';
 import ProfileIcon from '@/shared/assets/profile.svg';
 import InventoryIcon from '@/shared/assets/inventory.svg';
@@ -11,15 +11,12 @@ import CommentIcon from '@/shared/assets/comment.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { routes } from '@/shared/constants/router';
 
-import { Sidebar as HeadlessSidebar } from '../../../../../headless-sidebar/src';
+import { Sidebar as HeadlessSidebar } from 'headless-sidebar';
+import { SidebarProps } from '../Sidebar/Sidebar';
 
-type Props = {
-  className?: string;
-  isOpen: boolean;
-  setOpen: (value: boolean) => void;
-};
+type Props = SidebarProps
 
-export const Sidebar = (props: Props) => {
+export const BrowserViewSidebar = (props: Props) => {
   const { className, isOpen, setOpen } = props;
 
   const toggleOpen = useCallback(() => {
@@ -31,7 +28,7 @@ export const Sidebar = (props: Props) => {
   return (
     <HeadlessSidebar
       className={classNames(
-        'min-w-min max-w-xs w-full h-full p-8 flex flex-col gap-8 bg-gray-100',
+        'min-w-min max-w-md w-full h-full p-8 flex flex-col gap-8 bg-gray-100',
         {},
         [className]
       )}
@@ -77,7 +74,8 @@ export const Sidebar = (props: Props) => {
           label="Inventory"
           classNames={{
             container: 'flex flex-col gap-2',
-            header: 'p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200',
+            header:
+              'p-2 flex gap-4 items-center w-full rounded-xl cursor-pointer hover:bg-gray-200',
             label: 'text-xl',
             inner: 'ml-8 mr-8 flex flex-col gap-2',
             dropdown: 'w-max p-2 bg-gray-50 rounded-xl flex flex-col gap-2',
@@ -139,7 +137,8 @@ export const Sidebar = (props: Props) => {
           icon={<Icon Svg={CommentIcon} />}
           label="Say hi"
           classNames={{
-            container: 'p-2 flex gap-4 items-center rounded-xl cursor-pointer hover:bg-gray-200',
+            container:
+              'p-2 flex gap-4 items-center w-full rounded-xl cursor-pointer hover:bg-gray-200',
             activeContainer: 'bg-blue-100 hover:bg-blue-200',
             label: 'text-xl'
           }}
