@@ -4,6 +4,8 @@ import { BrowserView, MobileView } from 'react-device-detect';
 import { classNames as classNamesHelper } from '../../model/lib/helpers/classNames/classNames';
 import { MenuItem } from '../MenuItem/MenuItem';
 import { useSidebar } from '../../model/hooks/useSidebarContext';
+import { Backdrop } from '../Backdrop/Backdrop';
+import { Dropdown } from '../Dropdown/Dropdown';
 
 import styles from './Collapsible.module.css';
 
@@ -16,7 +18,7 @@ type ClassNames = {
   activeHeader?: string;
 };
 
-type CollapsibleProps = {
+type Props = {
   classNames?: ClassNames;
 
   children?: ReactNode;
@@ -26,7 +28,7 @@ type CollapsibleProps = {
   active?: boolean;
 };
 
-export const Collapsible = (props: CollapsibleProps) => {
+export const Collapsible = (props: Props) => {
   const { children, icon, label, active, classNames } = props;
 
   const { isOpen } = useSidebar();
@@ -50,6 +52,14 @@ export const Collapsible = (props: CollapsibleProps) => {
 
   const onMenuItemClick = useCallback(() => {
     setExpanded(true);
+  }, []);
+
+  const onBackdropClick = useCallback(() => {
+    setExpanded(false);
+  }, []);
+
+  const onMobileMenuClick = useCallback(() => {
+    setExpanded(false);
   }, []);
 
   const menuItemClassnames = useMemo(
@@ -82,17 +92,9 @@ export const Collapsible = (props: CollapsibleProps) => {
       >
         {getMenuItem()}
 
-        <div className={styles.dropdownContainer}>
-          <ul
-            className={classNamesHelper(
-              styles.dropdown,
-              { [styles.shownDropdown]: !showDropdown },
-              [classNames?.dropdown]
-            )}
-          >
-            {children}
-          </ul>
-        </div>
+        <Dropdown show={showDropdown} className={classNames?.dropdown}>
+          {children}
+        </Dropdown>
       </li>
     );
   }
@@ -106,21 +108,11 @@ export const Collapsible = (props: CollapsibleProps) => {
       </BrowserView>
 
       <MobileView>
+        <Backdrop isActive={expanded} onClick={onBackdropClick} />
+
         <div
-          className={classNamesHelper(styles.backdrop, { [styles.backdrop_active]: expanded }, [])}
-          onClick={() => {
-            setExpanded(false);
-          }}
-        ></div>
-        <div
-          onClick={() => {
-            setExpanded(false);
-          }}
-          className={classNamesHelper(
-            styles.mobileMenu,
-            { [styles.mobileMenu_active]: expanded },
-            []
-          )}
+          onClick={onMobileMenuClick}
+          className={classNamesHelper(styles.mobileMenu, { [styles.mobileMenu_active]: expanded })}
         >
           <ul className={classNames?.inner}>{children}</ul>
         </div>
